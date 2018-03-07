@@ -1,4 +1,5 @@
 import IPreact from 'ipreact'
+import { fromJS } from 'immutable'
 
 const STORAGE_KEY = '_STORAGE_KEY_'
 const {
@@ -42,9 +43,9 @@ const { connect, getState, dispatch } = IPreact([
             }
         }
     }
-])({
+])(fromJS({
     todos: JSON.parse(store) || [],
     filter: (mt => mt && mt[1])(search.match(/\?filter=(\w+)/)) || 'all'
-})
+}))
 
 export { connect, getState, dispatch }
